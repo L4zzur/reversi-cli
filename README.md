@@ -18,7 +18,7 @@ $ cd reversi-cli
 
 ###### Запустить основной файл игры с набором аргументов:
 ```bash
-$ python main.py --color --random
+$ python main.py --color --random --sleep 1
 ```
 
 Один из трёх аргументов (```human, random, test```) является обязательным.
