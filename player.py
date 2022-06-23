@@ -55,7 +55,7 @@ class Human(Player):
 
                 if not possible_moves:
                     raise NoMoves
-                print(move in possible_moves)
+
                 if move not in possible_moves:
                     raise WrongMove
 
