@@ -11,7 +11,6 @@ class Game():
     def __init__(self, players=[Human(1), Random(2)], color=False, sleep=0):
         self.board = Board(color)
         self.players = players
-        #self.show_moves = show_moves
         self.board.start()
         self.board.markPossibleMoves(players[0])
         self.blacks = 2
