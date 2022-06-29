@@ -8,7 +8,7 @@
 
 ###### Склонировать репозиторий:
 ```bash
-$ git clone https://github.com/L4zzur/reversi-cli.git
+$ git clone https://github.com/L4zzur/reversi_cli.git
 ```
 
 ###### Перейти в папку reversi-cli:
