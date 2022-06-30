@@ -18,7 +18,6 @@ class Game:
         self.current = 0
         self.board.markPossibleMoves(self.players[self.current])
         self.status = Statuses.CONTINUES
-        self.prev_move_fail = False
 
     def getAmounts(self):
         '''
