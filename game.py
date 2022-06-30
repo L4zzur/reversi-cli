@@ -18,7 +18,6 @@ class Game:
         self.players = (Player(utils.PieceType.BLACK), Player(utils.PieceType.WHITE))
         self.board.start()
         self.current = 0
-        self.board.markPossibleMoves(self.players[self.current])
         self.status = Statuses.CONTINUES
 
     def getAmounts(self):
@@ -34,13 +33,6 @@ class Game:
         Возвращает список возможных ходов для текущего игрока
         '''
         return self.board.getPossibleMoves(self.players[self.current])
-
-    def boardCoords(self, coords):
-        '''
-        Возвращает представление координаты в координатной сетке доски,
-        например, (0, 0) в виде A0
-        '''
-        return f'{self.board.coords[coords[1]]}{coords[0]}'
 
     def setFinished(self):
         '''
