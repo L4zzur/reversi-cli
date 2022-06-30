@@ -10,7 +10,9 @@ class Statuses:
     DRAW = 3
 
 class Game:
-
+    '''
+    Класс, отвечающий за создание игры с доской и двумя игроками
+    '''
     def __init__(self):
         self.board = Board()
         self.players = (Player(utils.PieceType.BLACK), Player(utils.PieceType.WHITE))

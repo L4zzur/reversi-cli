@@ -9,7 +9,6 @@ class Board():
     def __init__(self):
         self.n = 8
         self.center = self.n // 2
-        self.coords = [chr(i) for i in range(ord('A'), ord('Z')+1)][0:self.n]
         
         self.pieces = [ # одномерный список фишек
             Piece(x, y)
@@ -70,7 +69,10 @@ class Board():
         '''
         Очищает поле от ячеек со статусом MOVE
         '''
-        [piece.setBoard() for piece in self.pieces if piece.getState() == utils.PieceType.MOVE]
+        for piece in self.pieces:
+            for direction in utils.DIRECTIONS:
+                if piece.getState() == utils.PieceType.MOVE:
+                    piece.setBoard()
 
     def getPossibleMoves(self, player):
         '''

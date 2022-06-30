@@ -3,7 +3,9 @@ from utils import PieceType
 from reversi_cli import exceptions
 
 class Player():
-	
+	'''
+	Класс, отвечающий за сущность каждого игрока
+	'''
 	def __init__(self, color):
 		self.color = color
 
