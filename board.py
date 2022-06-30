@@ -2,6 +2,9 @@ import utils
 from piece import Piece
 
 class Board():
+    '''
+    Класс доски, хранящий все ячейки
+    '''
 
     def __init__(self):
         self.n = 8
@@ -15,7 +18,9 @@ class Board():
         ]
     
     def asList(self):
-        '''Возвращает список состояний доски'''
+        '''
+        Возвращает список состояний доски
+        '''
         return [piece.getState() for piece in self.pieces]
 
     def start(self):
@@ -62,22 +67,24 @@ class Board():
                     self.markPossibleMove(player, piece, direction)
 
     def clearMoves(self):
-        '''Очищает поле от ячеек со статусом MOVE'''
+        '''
+        Очищает поле от ячеек со статусом MOVE
+        '''
         [piece.setBoard() for piece in self.pieces if piece.getState() == utils.PieceType.MOVE]
 
     def getPossibleMoves(self, player):
-        '''Возвращает список возможных ходов для текущего игрока'''
+        '''
+        Возвращает список возможных ходов для текущего игрока
+        '''
         self.markPossibleMoves(player)
         moves = [piece for piece in self.pieces if piece.getState() == utils.PieceType.MOVE]
         self.clearMoves()
         return moves
 
     def makeMove(self, player, coordinates):
-        '''Обрабатывает введённый шаг игрока и совершает его'''
-        moves = [piece.getCoords() for piece in self.getPossibleMoves(player)]
-        if coordinates not in moves:
-            raise Exception('Совершён неверный ход. Попробуйте ещё раз.')
-
+        '''
+        Обрабатывает введённый ход игрока и совершает его
+        '''
         move = coordinates[0] * self.n + coordinates[1]
 
         piece = self.pieces[move]

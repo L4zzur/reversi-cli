@@ -8,11 +8,15 @@ class Player():
 		self.color = color
 
 	def getColor(self):
-		'''Возвращает цвет фишек текущего игрока'''
+		'''
+		Возвращает цвет фишек текущего игрока
+		'''
 		return self.color
 
 	def getOpponentColor(self):
-		'''Возвращает цвет фишек оппонента текущего игрока'''
+		'''
+		Возвращает цвет фишек оппонента текущего игрока
+		'''
 		if self.color == PieceType.WHITE:
 			return PieceType.BLACK
 		elif self.color == PieceType.BLACK:
@@ -21,11 +25,13 @@ class Player():
 			raise ValueError
 
 	def checkMove(self, board, pos):
+		'''
+		Возвращает ход в случае если он выбран правильно,
+		иначе исключение WrongMove
+		'''
 		move = (int(pos[0]), int(pos[1]))
 		possible_moves = [piece.getCoords() for piece in board.getPossibleMoves(self)]
 
-		if not possible_moves:
-			raise exceptions.NoMoves
 		if move not in possible_moves:
 			raise exceptions.WrongMove
 

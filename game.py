@@ -21,54 +21,55 @@ class Game:
         self.prev_move_fail = False
 
     def getAmounts(self):
-        '''Возвращает количество черных и белых фишек на доске'''
+        '''
+        Возвращает количество черных и белых фишек на доске
+        '''
         blacks = len([piece for piece in self.board.pieces if piece.getState() == utils.PieceType.BLACK])
         whites = len([piece for piece in self.board.pieces if piece.getState() == utils.PieceType.WHITE])
         return blacks, whites
-
-    def moveFailed(self):
-        '''Выводит информацию о невозможности хода'''
-        print('Нет возможных ходов!\nХод переходит другому игроку.')
-        self.prev_move_fail = True
+    
+    def getPossibleMoves(self):
+        '''
+        Возвращает список возможных ходов для текущего игрока
+        '''
+        return self.board.getPossibleMoves(self.players[self.current])
 
     def boardCoords(self, coords):
-        '''Возвращает представление координаты в координатной сетке доски,
-        например, (0, 0) в виде A0'''
+        '''
+        Возвращает представление координаты в координатной сетке доски,
+        например, (0, 0) в виде A0
+        '''
         return f'{self.board.coords[coords[1]]}{coords[0]}'
 
-    def isFinished(self):
-        '''Обрабатывает конец игры и выводит победителя'''
-        if self.blacks > self.whites:
-            if self.players[0].getColor() == utils.PieceType.BLACK:
-                self.status = Statuses.BLACK_WON
-            else:
-                self.status = Statuses.WHITE_WON
-        elif self.blacks < self.whites:
-            if self.players[0].getColor() == utils.PieceType.WHITE:
-                self.status = Statuses.WHITE_WON
-            else:
-                self.status = Statuses.BLACK_WON
+    def setFinished(self):
+        '''
+        Обрабатывает конец игры и выводит победителя
+        '''
+        blacks, whites = self.getAmounts()
+        if blacks > whites:
+            self.status = Statuses.BLACK_WON
+        elif blacks < whites:
+            self.status = Statuses.WHITE_WON
         else:
             self.status = Statuses.DRAW
     
     def nextMove(self):
+        '''
+        Передача хода следующему игроку
+        '''
         self.current = (self.current + 1) % 2
+    
+    def makeMove(self, pos):
+        '''
+        Совершение хода и передача его следующему игроку
+        '''
+        self.board.makeMove(self.players[self.current], self.players[self.current].checkMove(self.board, pos))
+        self.nextMove()
 
-    def gameLoop(self):
-        '''Основной игровой цикл'''
-        while True:
-            try:
-                self.amountUpdate()
-                move = self.players[self.current].move(self.board)
-                self.board.makeMove(self.players[self.current], move)
-
-            except utils.NoMoves:
-                self.isFinished() if self.prev_move_fail else self.moveFailed()
-
-            self.current = (self.current + 1) % 2
-        
     def getState(self):
-        '''Возвращает состояние игры''' 
+        '''
+        Возвращает состояние игры
+        ''' 
         blacks, whites = self.getAmounts()
         return {
             'blacks': blacks,
