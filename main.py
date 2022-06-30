@@ -4,7 +4,6 @@ from game import Game
 from player import Human, Random
 
 def main():
-
     parser = argparse.ArgumentParser(description='Игра Отелло/Реверси против другого человека или бота.')
     group = parser.add_mutually_exclusive_group(required=True)
     parser.add_argument('--color', action="store_true", help='Включает цветной режим игры')

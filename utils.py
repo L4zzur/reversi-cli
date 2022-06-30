@@ -13,34 +13,14 @@ DIRECTIONS = (
     EAST, SOUTHEAST,
     SOUTH, SOUTHWEST,
     WEST, NORTHWEST
-    )
-
-COLORS = {
-    'B': 'Черные',
-    'W': 'Белые'
-}
-
+)
 
 class PieceType():              # типы полей
     '''Класс всех возможных состояний полей на доске'''
-    BOARD = '·'                     # пустое
-    BLACK = 'B'                     # черная фишка
-    WHITE = 'W'                     # белая фишка
-    MOVE = '×'                      # вариант хода
-
-
-class NoMoves(Exception):
-    pass
-
-
-class WrongMove(Exception):
-    pass
-
-
-def chunks(lst, n):                     # разбиение массива по чанкам
-    for i in range(0, len(lst), n):
-        yield lst[i:i + n]
-
+    BLACK = 0                     # черная фишка
+    WHITE = 1                     # белая фишка
+    BOARD = 2                     # пустое
+    MOVE = 3                      # вариант хода
 
 def out_of_bounds(piece, direction):    # проверка на возможный выход за пределы поля
     '''Проверка, касается ли текущее поле границы в заданном направлении'''
@@ -52,20 +32,3 @@ def out_of_bounds(piece, direction):    # проверка на возможны
            (direction in (SOUTH, SOUTHWEST, SOUTHEAST) and piece_bot) or \
            (direction in (EAST, NORTHEAST, SOUTHEAST) and piece_right) or \
            (direction in (WEST, NORTHWEST, SOUTHWEST) and piece_left)
-
-
-def get_color(fg=None, bg=None):
-    color = ''
-    if fg:
-        color += f'\x1b[38;2;{fg}m'
-    if bg:
-        color += f'\x1b[48;2;{bg}m'
-    return color
-
-
-def reset_color():
-    return '\x1b[0m'
-
-
-def color_string(str, fg=None, bg=None):
-    return get_color(fg, bg) + str + reset_color()
