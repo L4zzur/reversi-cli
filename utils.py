@@ -1,12 +1,12 @@
 WIDTH, HEIGHT = 8, 8            # длины сторон
 NORTH = -WIDTH                  # север
-NORTHEAST = -WIDTH + 1          # северо-запад
+NORTHEAST = -WIDTH + 1          # северо-восток
 EAST = 1                        # запад
 SOUTHEAST = WIDTH + 1           # юго-запад
 SOUTH = WIDTH                   # юг
 SOUTHWEST = WIDTH - 1           # юго-восток
 WEST = - 1                      # восток
-NORTHWEST = -WIDTH - 1          # северо-восток
+NORTHWEST = -WIDTH - 1          # северо-запад
 
 DIRECTIONS = (
     NORTH, NORTHEAST,
