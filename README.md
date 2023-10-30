@@ -4,6 +4,8 @@
 
 Всё об игре и её правилах: [Реверси](https://ru.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B2%D0%B5%D1%80%D1%81%D0%B8 "Википедия")
 
+Реализация с веб-интерфейсом и мультиплеером: [Reversi Web](https://gitlab.com/SolinnenHub/flask/reversi-web)
+
 # Установка:
 
 ###### Склонировать репозиторий:
